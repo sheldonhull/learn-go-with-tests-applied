@@ -103,6 +103,7 @@ func taskFmt() goyek.Task {
 			tf.Cmd("gofumports", strings.Split("-l -w -local github.com/goyek/goyek .", " ")...).Run() // nolint // it is OK if it returns error
 		},
 	}
+
 }
 
 // taskDockerBuild runs docker build commands against all local dockerfiles
