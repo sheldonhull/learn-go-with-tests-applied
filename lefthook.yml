@@ -1,0 +1,64 @@
+---
+# EXAMPLE USAGE
+# Refer for explanation to following link:
+# https://github.com/evilmartians/lefthook/blob/master/docs/full_guide.md
+#
+# This will run the key security checks that will have redacted secrets on output
+ci-checks:
+  commands:
+
+pre-push:
+  skip:
+    - merge
+    - rebase
+  commands:
+    gitleaks:
+      tags: security gotool
+      name: gitleaks-scan
+      run: gitleaks --pretty --exclude-forks --config=.gitleaks.toml --depth=1  -v
+    gopherbadge:
+      tags: docs tests go
+      name: update gopherbadge
+      run: |
+        go test  ./... -coverprofile ./artifacts/cover.out
+        go tool cover -html=./artifacts/cover.out -o ./artifacts/coverage.html
+        gopherbadger -md="README.md,coverage.md"
+        git add README.md && git commit --amend --no-edit README.md
+        git add coverage.md && git commit --amend --no-edit coverage.md
+    # using semver which is installed as go tool
+    semver:
+      tags: semver
+      name: semver version update
+      run: |
+        semver up alpha
+        git add .sever.yaml && git commit --amend --no-edit .sever.yaml
+    squealer:
+      tags: security
+      name: squealer
+      run: squealer --config-file ./.squealer.yml
+
+pre-commit:
+  skip:
+    - merge
+    - rebase
+  parallel: true
+  tags: go lint
+  commands:
+    golangci-lint:
+      tags: gotool
+      run: golangci-lint run ./... --config .golangci.yml --fix
+    markdownlint:
+      tags: docker
+      name: markdownlint-autofix
+      glob: '**/*/*.md'
+      run: docker run -i --rm -v ${PWD}:/work tmknom/markdownlint:latest --fix {files}
+    shellcheck:
+      tags: gotool
+      name: shellcheck
+      files: git ls-files -m
+      glob: '*.sh'
+      run: docker run --rm -v ${PWD}:/mnt koalaman/shellcheck:stable --format=json {files}
+    squealer:
+      tags: security
+      name: squealer
+      run: squealer --config-file ./.squealer.yml
