@@ -10,10 +10,9 @@ import (
 	_ "github.com/client9/misspell/cmd/misspell"
 	_ "github.com/go-critic/go-critic/cmd/gocritic"
 	_ "github.com/golangci/golangci-lint/cmd/golangci-lint"
-	_ "github.com/golangci/golangci-lint/cmd/golangci-lint"
 	_ "github.com/securego/gosec/v2/cmd/gosec"
 	_ "github.com/sqs/goreturns"
+	_ "golang.org/x/tools/cmd/godoc"
 	_ "golang.org/x/tools/cmd/goimports"
 	_ "mvdan.cc/gofumpt/gofumports"
-	_ "golang.org/x/tools/cmd/godoc"
 )

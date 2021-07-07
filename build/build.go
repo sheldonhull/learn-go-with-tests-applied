@@ -23,6 +23,7 @@ const ArtifactDirectory = "artifacts"
 
 // dockerFilePrecommit is the pre-commit tooling dockerfile to use
 const dockerFilePrecommit = "Dockerfile.v2.precommit"
+
 // BuildRoot is the absolute path for the project directory, removing the need to figure out relative path starting points.
 // const BuildRoot = "../"
 
@@ -103,7 +104,6 @@ func taskFmt() goyek.Task {
 			tf.Cmd("gofumports", strings.Split("-l -w -local github.com/goyek/goyek .", " ")...).Run() // nolint // it is OK if it returns error
 		},
 	}
-
 }
 
 // taskDockerBuild runs docker build commands against all local dockerfiles
@@ -115,7 +115,7 @@ func taskDockerBuild() goyek.Task {
 		Command: func(tf *goyek.TF) {
 			GetBuildRoot(tf)
 			buildPrecommit := tf.Cmd("docker", "build", "--pull", "--rm", "-f", dockerFilePrecommit, "-t", "precommit-custom:latest", ".")
-      tf.Logf("ℹ️ buildPrecommit > %s", buildPrecommit.String())
+			tf.Logf("ℹ️ buildPrecommit > %s", buildPrecommit.String())
 			// docker build --pull --rm -f "Dockerfile.precommit" -t precommit-custom:latest "."
 
 			buildPrecommit.Dir = BuildRoot
@@ -139,7 +139,7 @@ func taskPrecommitRunAll() goyek.Task {
 		Command: func(tf *goyek.TF) {
 			GetBuildRoot(tf)
 			runPrecommit := tf.Cmd("docker", "run", "--rm", "-v", BuildRoot+":/pre-commit", "precommit-custom:latest")
-      tf.Logf("ℹ️ taskPrecommitRunAll > %s", runPrecommit.String())
+			tf.Logf("ℹ️ taskPrecommitRunAll > %s", runPrecommit.String())
 
 			// docker build --pull --rm -f "Dockerfile.precommit" -t precommit-custom:latest "."
 
