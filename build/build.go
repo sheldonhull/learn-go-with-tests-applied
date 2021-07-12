@@ -15,13 +15,13 @@ import (
 
 // )
 
-// buildDir is the current build directory for the goyek files
+// buildDir is the current build directory for the goyek files.
 const buildDir = "build"
 
 // ArtifactDirectory is the build output directory for all binaries and other files. This simplifies project management instead of having possible binaries in each directory go files are built from.
 const ArtifactDirectory = "artifacts"
 
-// dockerFilePrecommit is the pre-commit tooling dockerfile to use
+// dockerFilePrecommit is the pre-commit tooling dockerfile to use.
 const dockerFilePrecommit = "Dockerfile.v2.precommit"
 
 // BuildRoot is the absolute path for the project directory, removing the need to figure out relative path starting points.
@@ -106,7 +106,7 @@ func taskFmt() goyek.Task {
 	}
 }
 
-// taskDockerBuild runs docker build commands against all local dockerfiles
+// taskDockerBuild runs docker build commands against all local dockerfiles.
 func taskDockerBuild() goyek.Task {
 	return goyek.Task{
 		Name:  "dockerbuild",
@@ -130,7 +130,7 @@ func taskDockerBuild() goyek.Task {
 	}
 }
 
-// taskPrecommitRunAll runs docker precommit image against all files in repo
+// taskPrecommitRunAll runs docker precommit image against all files in repo.
 func taskPrecommitRunAll() goyek.Task {
 	return goyek.Task{
 		Name:  "precommit-runall",
@@ -209,7 +209,7 @@ func taskMisspell() goyek.Task {
 			if err := installFmt.Run(); err != nil {
 				tf.Fatalf("go install misspell: %v", err)
 			}
-			lint := tf.Cmd("misspell", "-error", "-locale=US", "-i=importas", ".")
+			lint := tf.Cmd("misspell", "-error", "-locale=US", "-i=imports", ".")
 			if err := lint.Run(); err != nil {
 				tf.Fatalf("misspell: %v", err)
 			}

@@ -8,6 +8,10 @@ linters:
   enable-all: true
   disable:
    - scopelint
+   - paralleltest
+   - staticcheck
+   - noctx
+  #  - metalinter
   #   - prealloc
   # presets:
   #   - bugs

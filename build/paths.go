@@ -27,7 +27,7 @@ func GetBuildRoot(tf *goyek.TF) {
 	tf.Logf("BuildRoot: [%s]", BuildRoot)
 }
 
-// ResolveParentDirectory returns the directory above the provided directory as a fully qualified absolute path
+// ResolveParentDirectory returns the directory above the provided directory as a fully qualified absolute path.
 func resolveParentDirectory(tf *goyek.TF, childDirectory string) (parentDirectory string) {
 	projectDirectory := filepath.Dir(childDirectory)
 	parentDirectory, err := filepath.Abs(projectDirectory)
@@ -38,7 +38,7 @@ func resolveParentDirectory(tf *goyek.TF, childDirectory string) (parentDirector
 	return parentDirectory
 }
 
-// resolveABSPath returns absolute path of any path, and logs error upon failure
+// resolveABSPath returns absolute path of any path, and logs error upon failure.
 func resolveABSPath(tf *goyek.TF, directory string) (ABSPath string) {
 	ABSPath, err := filepath.Abs(directory)
 	if err != nil {

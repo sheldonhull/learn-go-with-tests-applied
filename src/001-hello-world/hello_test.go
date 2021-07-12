@@ -1,29 +1,41 @@
-package main
+package hello_test
 
-import "testing"
+import (
+	"testing"
+
+	"hello"
+)
 
 func TestHello(t *testing.T) {
 	assertCorrectMessage := func(got string, want string) {
 		t.Helper()
+
 		if got != want {
 			t.Errorf("Expected %q, got %q", want, got)
 		}
 	}
+
 	t.Run("saying hello to people", func(t *testing.T) {
-		got := Hello("Chris", "")
+		got := hello.Hello("Chris", "")
 		want := "Hello, Chris"
 		assertCorrectMessage(got, want)
 	})
 
 	t.Run("say 'Hello, World' when an empty string is supplied", func(t *testing.T) {
-		got := Hello("", "")
+		got := hello.Hello("", "")
 		want := "Hello, World"
 		assertCorrectMessage(got, want)
 	})
 
 	t.Run("in Spanish", func(t *testing.T) {
-		got := Hello("Elodie", "Spanish")
+		got := hello.Hello("Elodie", "Spanish")
 		want := "Hola, Elodie"
+		assertCorrectMessage(got, want)
+	})
+
+	t.Run("in French", func(t *testing.T) {
+		got := hello.Hello("Pierre", "French")
+		want := "Bonjour, Pierre"
 		assertCorrectMessage(got, want)
 	})
 }

@@ -1,4 +1,6 @@
 ---
+#### NOTE: for multi-module repo setting GO111MODULE='off' to avoid linting issues
+
 # EXAMPLE USAGE
 # Refer for explanation to following link:
 # https://github.com/evilmartians/lefthook/blob/master/docs/full_guide.md
@@ -41,13 +43,13 @@ pre-commit:
   skip:
     - merge
     - rebase
-  parallel: true
+  parallel: false
   tags: go lint
   commands:
     golangci-lint:
       tags: gotool
       # files: git ls-files *.go
-      run: golangci-lint run --config .golangci.yml --fix ./src/001-hello-world --disable typecheck
+      run: GO111MODULE='off' golangci-lint run --config .golangci.yml --fix ./... --disable typecheck
     markdownlint:
       tags: docker
       name: markdownlint-autofix
