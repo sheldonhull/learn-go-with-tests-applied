@@ -8,3 +8,11 @@ func Sum(numbers []int) int {
 
 	return sum
 }
+
+func SumAll(intSlices ...[]int) (sums []int) {
+	for _, s := range intSlices {
+		sums = append(sums, Sum(s))
+	}
+
+	return sums
+}

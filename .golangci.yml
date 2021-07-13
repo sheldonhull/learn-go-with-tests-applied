@@ -11,6 +11,7 @@ linters:
    - paralleltest
    - staticcheck
    - noctx
+   - wsl
   #  - metalinter
   #   - prealloc
   # presets:
