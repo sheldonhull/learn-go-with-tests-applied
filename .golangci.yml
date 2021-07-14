@@ -1,6 +1,4 @@
 linters:
-  skip-dirs:
-    - cmd/test-files
   # disable-all: true
   # enable:
   #   - megacheck
@@ -12,6 +10,9 @@ linters:
    - staticcheck
    - noctx
    - wsl
+   - gomoddirectives
+
+   - lll
   #  - metalinter
   #   - prealloc
   # presets:
@@ -20,3 +21,9 @@ linters:
 
     # bugs|comment|complexity|error|format|import|metalinter|module|performance|sql|style|test|unused
   fast: true
+
+run:
+  skip-dirs:
+    - cmd/test-files
+    - build
+    - artifacts

@@ -17,7 +17,7 @@ pre-push:
     gitleaks:
       tags: security gotool
       name: gitleaks-scan
-      run: gitleaks --pretty --exclude-forks --config=.gitleaks.toml --depth=1  -v
+      run: gitleaks --config-path=.gitleaks.toml --depth=1  -v
     gopherbadge:
       tags: docs tests go
       name: update gopherbadge
@@ -33,11 +33,11 @@ pre-push:
       name: semver version update
       run: |
         semver up alpha
-        git add .sever.yaml && git commit --amend --no-edit .sever.yaml
+        git add .semver.yaml && git commit --amend --no-edit .semver.yaml
     squealer:
       tags: security
       name: squealer
-      run: squealer --config-file ./.squealer.yml
+      run: squealer --config-file ./squealer.yml
 
 pre-commit:
   skip:
@@ -64,16 +64,16 @@ pre-commit:
     squealer:
       tags: security
       name: squealer
-      run: squealer --config-file ./.squealer.yml
-    gofmt:
-      tags: formatting
-      name: gofmt
-      run: gofmt -s -w .
-    gofumpt:
-      tags: gotool
-      name: gofumpt
-      run: gofumpt -l -w .
-    goimports:
-      tags: gotool
-      name: goimports
-      run: goimports -w .
+      run: squealer --config-file ./squealer.yml
+    # gofmt:
+    #   tags: formatting
+    #   name: gofmt
+    #   run: gofmt -s -w .
+    # gofumpt:
+    #   tags: gotool
+    #   name: gofumpt
+    #   run: gofumpt -l -w .
+    # goimports:
+    #   tags: gotool
+    #   name: goimports
+    #   run: goimports -w .

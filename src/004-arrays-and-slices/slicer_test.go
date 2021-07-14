@@ -1,10 +1,9 @@
 package slicer_test
 
 import (
-	"slicer"
 	"testing"
 
-	"github.com/matryer/is"
+	"slicer"
 )
 
 func TestSum(t *testing.T) {
@@ -25,7 +24,7 @@ func TestSum(t *testing.T) {
 func TestSumAll(t *testing.T) {
 	t.Run("passing 1 slice", func(t *testing.T) {
 		is := is.New(t)
-		got := slicer.SumAll([]int{1, 1, 1, 1, 1})
+		got := slicer.SumAll([]int{1, 3, 1, 1, 1})
 		want := []int{5}
 		is.Equal(got, want) // 1 slice should be returned with sum of 5
 	})

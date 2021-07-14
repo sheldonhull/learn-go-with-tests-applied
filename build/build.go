@@ -101,7 +101,7 @@ func taskFmt() goyek.Task {
 			if err := installFmt.Run(); err != nil {
 				tf.Fatalf("go install gofumports: %v", err)
 			}
-			tf.Cmd("gofumports", strings.Split("-l -w -local github.com/goyek/goyek .", " ")...).Run() // nolint // it is OK if it returns error
+			tf.Cmd("gofumports", strings.Split("-l -w -local github.com/goyek/goyek .", " ")...).Run()
 		},
 	}
 }

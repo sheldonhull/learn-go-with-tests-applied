@@ -1,7 +1,8 @@
-package iteration
+package iteration //nolint: testpackage
 
 import "testing"
 
+//nolint: ifshort
 func TestRepeat(t *testing.T) {
 	got := Repeat("a", 5)
 	want := "aaaaa"

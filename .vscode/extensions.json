@@ -1,12 +1,12 @@
-{
-    "recommendations": [
-        "golang.go",
-        "neverik.go-critic",
-        "ohanedan.lowlight-go-errors",
-        "msyrus.go-doc",
-        "maracko.json-to-go",
-        "766b.go-outliner",
-        "ethan-reesor.vscode-go-test-adapter",
-        "hbenl.vscode-test-explorer"
-    ]
-}
+// {
+//     "recommendations": [
+//         "golang.go",
+//         "neverik.go-critic",
+//         "ohanedan.lowlight-go-errors",
+//         "msyrus.go-doc",
+//         "maracko.json-to-go",
+//         "766b.go-outliner",
+//         "ethan-reesor.vscode-go-test-adapter",
+//         "hbenl.vscode-test-explorer"
+//     ]
+// }

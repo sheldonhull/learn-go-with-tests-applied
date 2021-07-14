@@ -7,6 +7,7 @@ import (
 	"integers"
 )
 
+//nolint: ifshort
 func TestAdd(t *testing.T) {
 	sum := integers.Add(2, 2)
 	expected := 4
