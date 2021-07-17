@@ -1,9 +1,11 @@
 package hello
 
 const (
-	englishHelloPrefix = "Hello, "
-	spanishHelloPrefix = "Hola, "
-	frenchHelloPrefix  = "Bonjour, "
+	englishHelloPrefix  = "Hello, "
+	spanishHelloPrefix  = "Hola, "
+	frenchHelloPrefix   = "Bonjour, "
+	germanHelloPrefix   = "Hallo, "
+	japeneseHelloPrefix = "Konnichiwa, "
 )
 
 // func main() {
@@ -17,6 +19,10 @@ func greetingPrefix(language string) string {
 		return spanishHelloPrefix
 	case "French":
 		return frenchHelloPrefix
+	case "German":
+		return germanHelloPrefix
+	case "Japanese":
+		return japeneseHelloPrefix
 	default:
 		return englishHelloPrefix
 	}

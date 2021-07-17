@@ -3,6 +3,7 @@ package shapes_test
 import (
 	"testing"
 
+	"github.com/matryer/is"
 	"shapes"
 )
 

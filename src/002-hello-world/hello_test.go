@@ -19,7 +19,7 @@ func TestHello(t *testing.T) {
 	t.Run("say 'Hello, World' when an empty string is supplied", func(t *testing.T) {
 		is := is.New(t)
 		got := hello.Hello("", "")
-		want := "Hello, "
+		want := "Hello, World"
 		is.Equal(got, want) // return Hello, World when no language is provided
 	})
 
