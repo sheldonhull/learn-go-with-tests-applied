@@ -1,21 +1,33 @@
 package pointers
 
-import (
-	"fmt"
+import "fmt"
 
-	s "github.com/inancgumus/prettyslice"
-)
+// Bitcoin provides an integer value representing the Bitcoin value.
+type Bitcoin int
 
+// Stringer returns the string value
+type Stringer interface {
+	String() string
+}
+
+// Wallet contains the bitcoin balance
 type Wallet struct {
-	balance int
+	balance Bitcoin
 }
 
-func (w *Wallet) Deposit(n int) {
-	w.balance = n
-	fmt.Printf("balance address: %v", &w.balance)
-	s.Show("balance", &w.balance)
+func (w *Wallet) Deposit(amount Bitcoin) {
+	w.balance += amount
 }
 
-func (w *Wallet) Balance() int {
+func (w *Wallet) Balance() Bitcoin {
+	return w.balance
+}
+
+func (b Bitcoin) String() string {
+	return fmt.Sprintf("%d BTC", b)
+}
+
+func (w *Wallet) Withdraw(amount Bitcoin) Bitcoin {
+	w.balance -= amount
 	return w.balance
 }
