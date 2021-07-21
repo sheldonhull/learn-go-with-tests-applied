@@ -1,0 +1,12 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="go test integers" type="GoTestRunConfiguration" factoryName="Go Test" nameIsGenerated="true">
+    <module name="learn-go-with-tests-applied" />
+    <working_directory value="$PROJECT_DIR$/src/002-integers" />
+    <kind value="PACKAGE" />
+    <package value="integers" />
+    <directory value="$PROJECT_DIR$" />
+    <filePath value="$PROJECT_DIR$" />
+    <framework value="gotest" />
+    <method v="2" />
+  </configuration>
+</component>

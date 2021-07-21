@@ -1,0 +1,12 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="go test hello-002" type="GoTestRunConfiguration" factoryName="Go Test">
+    <module name="learn-go-with-tests-applied" />
+    <working_directory value="$PROJECT_DIR$/src/002-hello-world" />
+    <kind value="PACKAGE" />
+    <package value="hello" />
+    <directory value="$PROJECT_DIR$" />
+    <filePath value="$PROJECT_DIR$" />
+    <framework value="gotest" />
+    <method v="2" />
+  </configuration>
+</component>

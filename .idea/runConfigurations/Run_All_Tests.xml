@@ -1,0 +1,13 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Run All Tests" type="CompoundRunConfigurationType">
+    <toRun name="go test shapes" type="GoTestRunConfiguration" />
+    <toRun name="go test mymaps" type="GoTestRunConfiguration" />
+    <toRun name="go test slicer" type="GoTestRunConfiguration" />
+    <toRun name="go test integers" type="GoTestRunConfiguration" />
+    <toRun name="go test hello-002" type="GoTestRunConfiguration" />
+    <toRun name="go test iteration" type="GoTestRunConfiguration" />
+    <toRun name="go test pointers" type="GoTestRunConfiguration" />
+    <toRun name="go test hello" type="GoTestRunConfiguration" />
+    <method v="2" />
+  </configuration>
+</component>
