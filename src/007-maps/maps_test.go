@@ -3,9 +3,8 @@ package mymaps_test
 import (
 	"testing"
 
-	"mymaps"
-
 	iz "github.com/matryer/is"
+	"mymaps"
 )
 
 func TestSearch(t *testing.T) {
@@ -17,7 +16,6 @@ func TestSearch(t *testing.T) {
 		is.NoErr(err) // no error should be returned
 		want := "this is just a test"
 		is.Equal(got, want) // value found in map
-
 	})
 	t.Run("invalid value to lookup returns", func(t *testing.T) {
 		dictionary := mymaps.Dictionary{"test": "this is just a test"}

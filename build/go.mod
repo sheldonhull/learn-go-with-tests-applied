@@ -1,10 +1,11 @@
-module github.com/sheldonhull/learn-go-with-tests-applied/tools
+module github.com/sheldonhull/learn-go-with-tests-applied/goyek
 
 // This is originally pulled from https://github.com/goyek/goyek and built upon
 go 1.16
 
 require (
 	4d63.com/gochecknoglobals v0.0.0-20210416044342-fb0abda3d9aa // indirect
+	github.com/c-bata/go-prompt v0.2.6
 	github.com/client9/misspell v0.3.4
 	github.com/daixiang0/gci v0.2.9 // indirect
 	github.com/go-critic/go-critic v0.5.7

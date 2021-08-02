@@ -6,6 +6,11 @@
 # https://github.com/evilmartians/lefthook/blob/master/docs/full_guide.md
 #
 # This will run the key security checks that will have redacted secrets on output
+skip_output:
+  # - meta
+  - success
+  # - summary
+
 ci-checks:
   commands:
 
@@ -65,15 +70,15 @@ pre-commit:
       tags: security
       name: squealer
       run: squealer --config-file ./squealer.yml
-    # gofmt:
-    #   tags: formatting
-    #   name: gofmt
-    #   run: gofmt -s -w .
-    # gofumpt:
-    #   tags: gotool
-    #   name: gofumpt
-    #   run: gofumpt -l -w .
-    # goimports:
-    #   tags: gotool
-    #   name: goimports
-    #   run: goimports -w .
+    gofmt:
+      tags: formatting
+      name: gofmt
+      run: gofmt -s -w .
+    gofumpt:
+      tags: gotool
+      name: gofumpt
+      run: gofumpt -l -w .
+    goimports:
+      tags: gotool
+      name: goimports
+      run: goimports -w .

@@ -11,5 +11,6 @@ func (d Dictionary) Search(word string) (string, error) {
 	if !ok {
 		return "", errors.New("unable to find value in map")
 	}
+
 	return definition, nil
 }

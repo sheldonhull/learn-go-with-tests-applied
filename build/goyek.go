@@ -1,11 +1,13 @@
 package main
 
 import (
+	"fmt"
 	"io"
 	"os"
 	"path/filepath"
 	"strings"
 
+	"github.com/c-bata/go-prompt"
 	"github.com/goyek/goyek"
 )
 
@@ -24,11 +26,38 @@ const ArtifactDirectory = "artifacts"
 // dockerFilePrecommit is the pre-commit tooling dockerfile to use.
 const dockerFilePrecommit = "Dockerfile.v2.precommit"
 
+// SelectedTask is the task that was selected by the user.
+var SelectedTask = ""
+
 // BuildRoot is the absolute path for the project directory, removing the need to figure out relative path starting points.
 // const BuildRoot = "../"
 
 func main() {
+	fmt.Println("Please select action.")
+	SelectedTask = prompt.Input("> ", completer, prompt.OptionShowCompletionAtStart())
+	fmt.Println("You selected " + SelectedTask)
+
 	flow().Main()
+}
+
+func completer(d prompt.Document) []prompt.Suggest {
+	s := []prompt.Suggest{
+		{Text: "ci", Description: "Whether CI is calling the build script"},
+		{Text: "clean", Description: "remove git ignored files"},
+		{Text: "build", Description: "go build"},
+		{Text: "fmt", Description: "gofumports"},
+		{Text: "dockerbuild", Description: "pull any docker dependencies in project"},
+		{Text: "precommit-runall", Description: "runs docker precommit image against all files in repo"},
+		{Text: "markdownlint", Description: "markdownlint-cli (requires docker)"},
+		{Text: "misspell", Description: "misspell"},
+		{Text: "golangci-lint", Description: "golangci-lint"},
+		{Text: "test", Description: "go test with race detector and code covarage"},
+		{Text: "mod-tidy", Description: "go mod tidy"},
+		{Text: "diff", Description: "git diff"},
+		{Text: "lint", Description: "all linters"},
+		{Text: "all", Description: "build pipeline"},
+	}
+	return prompt.FilterHasPrefix(s, d.GetWordBeforeCursor(), true)
 }
 
 func flow() *goyek.Taskflow {
@@ -39,7 +68,6 @@ func flow() *goyek.Taskflow {
 		Name:  "ci",
 		Usage: "Whether CI is calling the build script",
 	})
-
 	// tasks
 	clean := flow.Register(taskClean())
 	build := flow.Register(taskBuild())
@@ -50,7 +78,6 @@ func flow() *goyek.Taskflow {
 	test := flow.Register(taskTest())
 	modTidy := flow.Register(taskModTidy())
 	diff := flow.Register(taskDiff(ci))
-
 	precommitRunAll := flow.Register(taskPrecommitRunAll())
 
 	_ = flow.Register(taskDockerBuild())
@@ -70,7 +97,9 @@ func flow() *goyek.Taskflow {
 		modTidy,
 		diff,
 	}))
+
 	// flow.DefaultTask = all
+	// flow.DefaultTask =
 
 	return flow
 }

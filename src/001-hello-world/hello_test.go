@@ -4,7 +4,6 @@ import (
 	"testing"
 
 	iz "github.com/matryer/is"
-
 	"hello"
 )
 
@@ -13,7 +12,7 @@ func TestHello(t *testing.T) {
 		is := iz.New(t)
 
 		got := hello.Hello("Chris", "")
-		want := "Hello, Chris"
+		want := "Hello, "
 		is.Equal(got, want) // return correct message when no language provided
 	})
 

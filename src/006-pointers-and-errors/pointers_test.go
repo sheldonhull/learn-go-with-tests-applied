@@ -3,9 +3,8 @@ package pointers_test
 import (
 	"testing"
 
-	"pointers"
-
 	iz "github.com/matryer/is"
+	"pointers"
 )
 
 func TestWallet(t *testing.T) {
@@ -15,7 +14,6 @@ func TestWallet(t *testing.T) {
 		is := iz.New(t)
 		got := wallet.Balance()
 		is.Equal(got, want) // balance matches expected
-
 	}
 	t.Run("deposit a single amount", func(t *testing.T) {
 		wallet := pointers.Wallet{}

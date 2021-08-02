@@ -13,12 +13,12 @@ import (
 // Bitcoin provides an integer value representing the Bitcoin value.
 type Bitcoin int
 
-// Stringer returns the string value
+// Stringer returns the string value.
 type Stringer interface {
 	String() string
 }
 
-// Wallet contains the bitcoin balance
+// Wallet contains the bitcoin balance.
 type Wallet struct {
 	balance Bitcoin
 }
@@ -38,7 +38,6 @@ func (b Bitcoin) String() string {
 // Withdraw subtracts the provided bitcoin amount from the balance.
 // If the bitcoin amount is insufficient then an error is returned.
 func (w *Wallet) Withdraw(amount Bitcoin) error {
-
 	if w.balance-amount < 0 {
 		return errors.New("insufficient balance")
 	}

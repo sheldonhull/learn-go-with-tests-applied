@@ -11,7 +11,7 @@ linters:
    - noctx
    - wsl
    - gomoddirectives
-
+   - forbidigo
    - lll
   #  - metalinter
   #   - prealloc

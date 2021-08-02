@@ -1,11 +1,10 @@
-package di
+package di_test
 
 import (
 	"bytes"
 	"testing"
 
 	"di"
-
 	iz "github.com/matryer/is"
 )
 
