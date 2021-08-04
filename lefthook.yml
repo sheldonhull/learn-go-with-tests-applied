@@ -1,6 +1,6 @@
 ---
 #### NOTE: for multi-module repo setting GO111MODULE='off' to avoid linting issues
-
+# go install github.com/evilmartians/lefthook@latest
 # EXAMPLE USAGE
 # Refer for explanation to following link:
 # https://github.com/evilmartians/lefthook/blob/master/docs/full_guide.md
@@ -39,6 +39,7 @@ pre-push:
       run: |
         semver up alpha
         git add .semver.yaml && git commit --amend --no-edit .semver.yaml
+    # go install github.com/owenrumney/squealer/cmd/squealer@latest
     squealer:
       tags: security
       name: squealer
@@ -71,14 +72,29 @@ pre-commit:
       name: squealer
       run: squealer --config-file ./squealer.yml
     gofmt:
-      tags: formatting
+      tags: fmt
       name: gofmt
       run: gofmt -s -w .
+
+    # GO111MODULE=on go get mvdan.cc/gofumpt
     gofumpt:
-      tags: gotool
+      tags: gotool fmt
       name: gofumpt
       run: gofumpt -l -w .
+
+    # GO111MODULE='off'  go get golang.org/x/tools/cmd/goimports
     goimports:
-      tags: gotool
+      tags: gotool fmt
       name: goimports
       run: goimports -w .
+
+       # GO111MODULE='off' go get github.com/daixiang0/gci
+    gci:
+      tags: gotool fmt
+      name: gci
+      run: gci -w .
+    # install: go install github.com/gechr/yamlfmt@latest
+    yamlfmt:
+      # files: git diff-index --name-only HEAD
+      glob: '*.yaml|*.yml'
+      run: yamlfmt --write {files}

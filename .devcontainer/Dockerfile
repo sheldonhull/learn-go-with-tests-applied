@@ -9,3 +9,12 @@ FROM mcr.microsoft.com/vscode/devcontainers/universal:1-focal
 #     && apt-get -y install --no-install-recommends <your-package-list-here>
 #
 # USER codespace
+RUN curl -sf https://gobinaries.com/chriswalz/bit | sh; \
+    bit complete;
+
+RUN go install github.com/owenrumney/squealer/cmd/squealer@latest \
+    go install github.com/evilmartians/lefthook@latest \
+    GO111MODULE='off' go get github.com/daixiang0/gci \
+    GO111MODULE='off'  go get golang.org/x/tools/cmd/goimports \
+    GO111MODULE=on go get mvdan.cc/gofumpt \
+    go install github.com/gechr/yamlfmt@latest
