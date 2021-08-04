@@ -22,8 +22,12 @@ linters:
     # bugs|comment|complexity|error|format|import|metalinter|module|performance|sql|style|test|unused
   fast: true
 
+
 run:
   skip-dirs:
     - cmd/test-files
     - build
     - artifacts
+
+linters-settings:
+    local-prefixes: github.com

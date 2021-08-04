@@ -2,9 +2,9 @@ package di_test
 
 import (
 	"bytes"
-	"di"
 	"testing"
 
+	"di"
 	iz "github.com/matryer/is"
 )
 

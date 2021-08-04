@@ -1,4 +1,4 @@
-package hello_test
+package hello2_test
 
 import (
 	"testing"
