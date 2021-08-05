@@ -17,4 +17,5 @@ RUN go install github.com/owenrumney/squealer/cmd/squealer@latest \
     GO111MODULE='off' go get github.com/daixiang0/gci \
     GO111MODULE='off'  go get golang.org/x/tools/cmd/goimports \
     GO111MODULE=on go get mvdan.cc/gofumpt \
-    go install github.com/gechr/yamlfmt@latest
+    go install github.com/gechr/yamlfmt@latest \
+    GO111MODULE=on go get github.com/zricethezav/gitleaks/v7
