@@ -3,6 +3,7 @@ package main
 import (
 	"bytes"
 	"fmt"
+	"os"
 )
 
 func Countdown(out *bytes.Buffer, count int) {
@@ -10,4 +11,5 @@ func Countdown(out *bytes.Buffer, count int) {
 }
 
 func main() {
+	Countdown(os.Stdout)
 }
