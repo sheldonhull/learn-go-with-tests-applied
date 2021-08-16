@@ -1,9 +1,12 @@
-// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
-// https://github.com/microsoft/vscode-dev-containers/tree/v0.187.0/containers/codespaces-linux
 {
-	"name": "GitHub Codespaces (Default)",
+	"name": "Codespaces (sheldonhull)",
 	"build": {
-		"dockerfile": "Dockerfile"
+		"dockerfile": "Dockerfile",
+		"args": {
+			"INSTALL_AZURE_CLI": "false",
+			"INSTALL_AWS_CLI": "false",
+			"INSTALL_GITVERSION": "true",
+		}
 	},
 	"settings": {
 		"go.toolsManagement.checkForUpdates": "local",
@@ -30,7 +33,10 @@
 	"remoteUser": "codespace",
 	"overrideCommand": false,
 	"mounts": [
-		"source=codespaces-linux-var-lib-docker,target=/var/lib/docker,type=volume"
+		"source=codespaces-linux-var-lib-docker,target=/var/lib/docker,type=volume", // support for docker
+		"source=default-vscode-extensions,target=/root/.vscode-server/extensions,type=volume", // support for caching extensions to speed up new containers
+		"source=${localEnv:HOME}${localEnv:USERPROFILE}/.aws/credentials,target=/home/codespace/.aws/credentials,type=bind,consistency=cached", // support for AWS credentials
+		"source=${localEnv:HOME}${localEnv:USERPROFILE}/.ssh,target=/home/codespace/.ssh/,type=bind,consistency=cached", // support for SSH keys
 	],
 	"runArgs": [
 		"--cap-add=SYS_PTRACE",
@@ -39,13 +45,16 @@
 		"--privileged",
 		"--init"
 	],
+	"remoteEnv": {
+		"GH_TOKEN": "${localEnv:GITHUB_OAUTH_TOKEN}",
+		"AZURE_DEVOPS_ORGANIZATION": "${localEnv:AZURE_DEVOPS_ORGANIZATION}",
+	},
 	// Add the IDs of extensions you want installed when the container is created.
 	"extensions": [
-		"GitHub.vscode-pull-request-github",
-		"sheldon-hull.extension-pack-go"
+		// "GitHub.vscode-pull-request-github"
 	],
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
 	// "oryx build" will automatically install your dependencies and attempt to build your project
-	"postCreateCommand": "oryx build -p virtualenv_name=.venv --log-file /tmp/oryx-build.log --manifest-dir /tmp || echo 'Could not auto-build. Skipping.'"
+	"postCreateCommand": []
 }

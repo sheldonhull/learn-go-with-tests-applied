@@ -58,3 +58,5 @@ build/tools
 bin
 requirements.txt
 .venv
+_tools/
+_artifacts/
