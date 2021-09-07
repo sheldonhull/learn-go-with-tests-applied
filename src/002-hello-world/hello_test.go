@@ -1,10 +1,10 @@
 package hello2_test
 
 import (
+	"hello"
 	"testing"
 
 	iz "github.com/matryer/is"
-	"hello"
 )
 
 func TestHello(t *testing.T) {
