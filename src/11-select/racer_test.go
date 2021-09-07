@@ -11,20 +11,40 @@ import (
 )
 
 func TestRacer(t *testing.T) {
-	is := iz.New(t)
+	t.Run("when one server is faster", func(t *testing.T) {
+		is := iz.New(t)
+		slowServer := makeDelayedServer(20 * time.Millisecond)
+		defer slowServer.Close()
 
-	slowServer := makeDelayedServer(20 * time.Millisecond)
-	defer slowServer.Close()
+		fastServer := makeDelayedServer(0 * time.Millisecond)
+		defer fastServer.Close()
 
-	fastServer := makeDelayedServer(0 * time.Millisecond)
-	defer fastServer.Close()
-	slowURL := slowServer.URL
-	fastURL := fastServer.URL
+		slowURL := slowServer.URL
+		fastURL := fastServer.URL
 
-	want := fastURL
-	got := src.Racer(slowURL, fastURL)
+		want := fastURL
+		got, err := src.Racer(slowURL, fastURL)
 
-	is.Equal(got, want) // the fast URL should be quii obviously
+		is.NoErr(err)       // no timeout error should occur
+		is.Equal(got, want) // should match fastURL
+	})
+
+	t.Run("with both servers timeout an error is returned", func(t *testing.T) {
+		is := iz.New(t)
+		serverA := makeDelayedServer(11 * time.Second)
+		defer serverA.Close()
+
+		serverB := makeDelayedServer(12 * time.Second)
+		defer serverB.Close()
+
+		serverAURL := serverA.URL
+		serverBURL := serverB.URL
+
+		want := ""
+		got, err := src.Racer(serverAURL, serverBURL)
+		is.True(err != nil) // an error should be returned
+		is.Equal(got, want) // no url should be returned due to timeout
+	})
 }
 
 func makeDelayedServer(delay time.Duration) *httptest.Server {
