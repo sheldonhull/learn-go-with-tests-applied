@@ -1,5 +1,7 @@
 # Learn Go With Tests
 
-![gopherbadger-tag-do-not-edit]()
-
 Applying TDD for learning Go.
+
+## Notes
+
+This is a multi-module mono-repo, therefore running `go test ./...` from parent won't work.

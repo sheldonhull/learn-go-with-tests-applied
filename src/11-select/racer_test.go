@@ -31,19 +31,12 @@ func TestRacer(t *testing.T) {
 
 	t.Run("with both servers timeout an error is returned", func(t *testing.T) {
 		is := iz.New(t)
-		serverA := makeDelayedServer(11 * time.Second)
-		defer serverA.Close()
+		server := makeDelayedServer(50 * time.Millisecond)
+		defer server.Close()
 
-		serverB := makeDelayedServer(12 * time.Second)
-		defer serverB.Close()
-
-		serverAURL := serverA.URL
-		serverBURL := serverB.URL
-
-		want := ""
-		got, err := src.Racer(serverAURL, serverBURL)
+		// use configurable racer to avoid long-times on unit tests
+		_, err := src.ConfigurableRacer(server.URL, server.URL, 20*time.Millisecond)
 		is.True(err != nil) // an error should be returned
-		is.Equal(got, want) // no url should be returned due to timeout
 	})
 }
 
