@@ -33,7 +33,7 @@ require (
 	github.com/tomarrell/wrapcheck/v2 v2.2.0 // indirect
 	github.com/yuin/goldmark v1.4.0 // indirect
 	golang.org/x/net v0.0.0-20210614182718-04defd469f4e // indirect
-	golang.org/x/sys v0.0.0-20210630005230-0f9fa26af87c // indirect
+	golang.org/x/sys v0.1.0 // indirect
 	golang.org/x/tools v0.1.5-0.20210701083923-20dafe5d6055
 	google.golang.org/protobuf v1.27.1 // indirect
 	mvdan.cc/gofumpt v0.1.1
