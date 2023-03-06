@@ -31,10 +31,8 @@ require (
 	github.com/stretchr/objx v0.3.0 // indirect
 	github.com/timakin/bodyclose v0.0.0-20210704033933-f49887972144 // indirect
 	github.com/tomarrell/wrapcheck/v2 v2.2.0 // indirect
-	github.com/yuin/goldmark v1.4.0 // indirect
-	golang.org/x/net v0.0.0-20210614182718-04defd469f4e // indirect
-	golang.org/x/sys v0.0.0-20210630005230-0f9fa26af87c // indirect
-	golang.org/x/tools v0.1.5-0.20210701083923-20dafe5d6055
+	golang.org/x/net v0.7.0 // indirect
+	golang.org/x/tools v0.1.12
 	google.golang.org/protobuf v1.27.1 // indirect
 	mvdan.cc/gofumpt v0.1.1
 	mvdan.cc/unparam v0.0.0-20210701114405-894c3c7ee6a6 // indirect
